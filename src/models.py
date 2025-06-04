@@ -16,6 +16,8 @@ class FavouritePlanet(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "planet_id": self.people_id,
+            "user_id": self.user_id
         }
 
 
@@ -30,6 +32,8 @@ class FavouritePeople(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "people_id": self.people_id,
+            "user_id": self.user_id
         }
 
 
@@ -101,4 +105,5 @@ class People(db.Model):
             "height": self.height,
             "weight": self.weight,
             "image": self.image,
+            "planet_of_birth": self.planet_of_birth
         }
