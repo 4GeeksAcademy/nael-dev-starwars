@@ -10,7 +10,7 @@ class FavouritePlanet(db.Model):
     planet_id: Mapped[int] = mapped_column(ForeignKey("planets.id"))
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
 
-    user_id_favourite: Mapped["User"] = relationship(back_populate="user_favourite_planet")
+    user_id_favourite: Mapped["User"] = relationship(back_populates="user_favourite_planet")
     planet_id_favourite: Mapped["Planets"] = relationship(back_populates="planet_favourites")
   
     def serialize(self):
@@ -88,7 +88,9 @@ class People(db.Model):
     planet_of_birth: Mapped[int] = mapped_column(ForeignKey("planets.id"))
 
     planet:Mapped["Planets"] = relationship(back_populates="people")
-    favorite_user= Mapped[list["FavouritePeople"]]= relationship(back_populates="people")
+    favourite_users:Mapped[list["FavouritePeople"]] = relationship(back_populates="people")
+
+
 
     def serialize(self):
         return {
